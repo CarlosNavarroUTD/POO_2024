@@ -26,8 +26,6 @@ print(f"la suma es: {suma}")
 #Ejamplo 3 crear un programa que solicite un numero entero y apartir 
 
 numero=int(input("Ingrese un numero:"))
-
-
 multi=0
 i=1
 while i<=10:
