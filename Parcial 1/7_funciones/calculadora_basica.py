@@ -1,3 +1,4 @@
+import os
 """
 i = True
 while i:
@@ -71,12 +72,11 @@ def OperacionesArit(n1,n2):
     elif opcion=="4" or opcion=="/" or opcion=="DIVICION":
         divicion=n1/n2
         return(f"{n1} / {n2} = {divicion}")
-    else:
-        print("Saliste")
-        i=False
+    
 
 i=True
 while i:
+    os.system("Clear")
     print(f"========== \n Calculadora Básica \n=============")
     print("1.- Suma")
     print("2.- Resta")
@@ -85,5 +85,10 @@ while i:
     print("5.- Salir")
     opcion= input("Elige una opción ").upper()
 
-    SolicitarNumeros()
-    print(OperacionesArit(n1,n2))
+    #if opcion!=1 or opcion!=2 or opcion!=3 or opcion!=4:
+    if opcion!="5": 
+        SolicitarNumeros()
+        print(OperacionesArit(n1,n2))
+    else:
+        print("Saliste")
+        i=False
