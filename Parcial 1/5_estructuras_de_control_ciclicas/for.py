@@ -20,7 +20,7 @@ for contador in range (1,6):
     suma+=contador
 print(f"la suma es: {suma}")
 
-#Ejamplo 3 crear un programa que solicite un numero entero y 
+#Ejamplo 3 crear un programa que solicite un numero entero y  
 
 numero=int(input("Ingrese un numero:"))
 

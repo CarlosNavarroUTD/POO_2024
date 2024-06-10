@@ -7,3 +7,4 @@ numero=23
 
 print(texto+"y soy una cadena")
 print(numero+34)
+  

@@ -13,7 +13,7 @@ while contador <=5:
     print("@")
     i+=1
 
-#Ejemplo 2 Crear un programa que imprima los numeros del 1 al 5, los suma y los imprima al final
+#Ejemplo 2 Crear un programa que imprima los numeros del 1 al 5, los suma y los imprima al final 
 
 suma=0
 contador=1

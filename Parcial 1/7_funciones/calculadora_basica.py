@@ -85,7 +85,7 @@ while i:
     print("5.- Salir")
     opcion= input("Elige una opción ").upper()
 
-    #if opcion!=1 or opcion!=2 or opcion!=3 or opcion!=4:
+    #if opcion!=1 or opcion!=2 or opcion!=3 or opcion!=4: 
     if opcion!="5": 
         SolicitarNumeros()
         print(OperacionesArit(n1,n2))

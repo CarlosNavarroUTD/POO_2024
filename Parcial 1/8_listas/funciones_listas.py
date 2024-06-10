@@ -41,4 +41,4 @@ print(paises)
 #Vaciar una lista
 print(varios)
 varios.clear()
-print(varios)
+print(varios) 

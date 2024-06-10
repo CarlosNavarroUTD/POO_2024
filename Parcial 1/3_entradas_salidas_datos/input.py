@@ -4,5 +4,4 @@ nombre=input("Ingresa el nombre completo del alumno:")
 edad=input("edad:")
 estatura=input("Estatura:")
 
-print(f"\t.::::Datos del Alumno::::.\n Alumno:
-      {nombre}\n Edad:{edad}\n Estatura:{estatura}")
+print(f"\t.::::Datos del Alumno::::.\n Alumno: {nombre}\n Edad:{edad}\n Estatura:{estatura}")  

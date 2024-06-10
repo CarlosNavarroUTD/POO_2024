@@ -53,4 +53,4 @@ elif color=="negro":
     print("Soy el color negro")
 else:
     print("No soy ninguno de los colores anteriores")
-    
+     
