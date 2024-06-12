@@ -55,7 +55,7 @@ suma(n1,n2)
 
 
 #Ejmplo 5 - Realizar suma
-#funciones que recibe parametro y regresa valor 
+#funciones que recibe parametro y regresa valor
 
 def suma(n1,n2):
     suma = n1+n2

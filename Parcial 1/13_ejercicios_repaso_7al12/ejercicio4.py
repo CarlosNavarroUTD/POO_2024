@@ -6,7 +6,12 @@
 
 def DataType(i):
     return type(i)
-lista=["cadena", 1, True]
-print(DataType(lista))
-for i in lista:
+cadena="cadena"
+entero=1
+logico=True
+lista2=[cadena, entero, logico]
+#print(lista2)
+#lista=["cadena", 1, True]
+print(DataType(lista2))
+for i in lista2:
     print(DataType(i))

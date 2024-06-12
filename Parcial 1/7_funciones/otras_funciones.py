@@ -1,6 +1,6 @@
 
 def nombredeMiFuncion():
-    #bloque o conjunto de intrucciónes 
+    #bloque o conjunto de intrucciónes
     print("bloque o conjunto de intrucciónes")
 
 
