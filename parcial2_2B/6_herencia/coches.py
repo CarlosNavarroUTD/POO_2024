@@ -125,7 +125,7 @@ class camiones(Coches):
   def getEje(self):
     return self.eje
 
-  def setEje(sel, eje):
+  def setEje(self, eje):
     self.eje=eje
 
   def getcapacidadcarga(self):
