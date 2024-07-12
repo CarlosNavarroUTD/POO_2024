@@ -5,7 +5,7 @@ try:
     conexion=mysql.connector.connect(
         host='localhost',
         user='root',
-        password='2014',
+        password='',
         database='bd_python'
     )
 except Exception as e:
