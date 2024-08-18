@@ -12,7 +12,14 @@ from Tickets.ticket import Ticket
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("Sistema de Gestión")
+        self.root.title("POS-AXOL")
+
+        # Vincular las teclas Ctrl + '+' y Ctrl + '-'
+        self.root.bind("<Control-plus>", self.zoom)
+        self.root.bind("<Control-minus>", self.backzoom)
+
+        # Vincular Ctrl + Scroll
+        self.root.bind("<Control-MouseWheel>", self.zoom_scroll)
 
         # Crear un contenedor para la pantalla de inicio de sesión
         self.frame = tk.Frame(root)
@@ -20,6 +27,22 @@ class App:
 
         # Pantalla de inicio de sesión
         self.show_login()
+
+    def zoom_scroll(self, event):
+        if event.delta > 0:
+            self.zoom(event)
+        else:
+            self.backzoom(event)
+
+    def zoom(self, event):
+        current_scale = self.root.tk.call('tk', 'scaling')
+        new_scale = current_scale + 0.1
+        self.root.tk.call('tk', 'scaling', new_scale)
+
+    def backzoom(self, event):
+        current_scale = self.root.tk.call('tk', 'scaling')
+        new_scale = max(0.1, current_scale - 0.1)  # Evitar escala negativa
+        self.root.tk.call('tk', 'scaling', new_scale)
 
     def show_login(self):
         self.clear_content_frame()
@@ -73,7 +96,7 @@ class App:
         tree_busqueda.heading('Nombre', text='Nombre')
         tree_busqueda.heading('Precio', text='Precio')
         tree_busqueda.heading('Stock', text='Stock')
-        tree_busqueda.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+        tree_busqueda.grid(row=2, column=0, columnspan=4, padx=10, pady=10)
 
         # Crear un Treeview para mostrar los productos seleccionados
         tree_seleccionados = ttk.Treeview(self.frame, columns=('ID', 'Nombre', 'Precio', 'Cantidad', 'Subtotal'), show='headings', height=5)
@@ -82,7 +105,15 @@ class App:
         tree_seleccionados.heading('Precio', text='Precio')
         tree_seleccionados.heading('Cantidad', text='Cantidad')
         tree_seleccionados.heading('Subtotal', text='Subtotal')
-        tree_seleccionados.grid(row=2, column=2, columnspan=2, padx=10, pady=10)
+        tree_seleccionados.grid(row=3, column=0, columnspan=4, padx=10, pady=10)
+
+        # Label para mostrar el total acumulado
+        total_label = tk.Label(self.frame, text="Total: $0.00")
+        total_label.grid(row=4, column=0, columnspan=4, padx=10, pady=10)
+
+        def actualizar_total():
+            total = sum(float(tree_seleccionados.item(item)['values'][4]) for item in tree_seleccionados.get_children())
+            total_label.config(text=f"Total: ${total:.2f}")
 
         def buscar_producto(event):
             busqueda = entry_busqueda.get()
@@ -122,7 +153,10 @@ class App:
             subtotal = cantidad * float(precio)
             tree_seleccionados.insert('', 'end', values=(producto_id, nombre, precio, cantidad, subtotal))
 
-        tk.Button(self.frame, text="Seleccionar Producto", command=seleccionar_producto).grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+            # Actualizar total
+            actualizar_total()
+
+        tk.Button(self.frame, text="Seleccionar Producto", command=seleccionar_producto).grid(row=4, column=0, columnspan=2, padx=10, pady=10)
 
         def realizar_ticket():
             if not tree_seleccionados.get_children():
@@ -144,8 +178,8 @@ class App:
             messagebox.showinfo("Éxito", "Ticket realizado exitosamente")
             self.show_main_menu()  # Volver al menú principal después de crear el ticket
 
-        tk.Button(self.frame, text="Realizar Ticket", command=realizar_ticket).grid(row=3, column=2, padx=10, pady=10)
-        tk.Button(self.frame, text="Volver", command=self.show_main_menu).grid(row=3, column=3, padx=10, pady=10)
+        tk.Button(self.frame, text="Realizar Ticket", command=realizar_ticket).grid(row=4, column=2, padx=10, pady=10)
+        tk.Button(self.frame, text="Volver", command=self.show_main_menu).grid(row=4, column=3, padx=10, pady=10)
 
 
 
