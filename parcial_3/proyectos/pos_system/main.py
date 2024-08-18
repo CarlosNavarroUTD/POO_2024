@@ -206,7 +206,7 @@ class App:
             telefono = entry_telefono.get()
             correo = entry_correo.get()
             rfc = entry_rfc.get()
-            nuevo_cliente = Cliente.agregar_cliente(domicilio, telefono, correo, rfc)
+            nuevo_cliente = Cliente.create(domicilio, telefono, correo, rfc)
             if nuevo_cliente:
                 messagebox.showinfo("Éxito", "Cliente agregado exitosamente")
             else:
@@ -246,9 +246,36 @@ class App:
             stock = entry_stock.get()
             codigo_barras = entry_codigo_barras.get()
             unidad_medida = entry_unidad_medida.get()
-            # Aquí agregarías el código para insertar el producto en la base de datos
 
-            messagebox.showinfo("Éxito", "Producto agregado exitosamente")
+            # Validación simple de los campos
+            if not nombre or not precio_venta or not stock:
+                messagebox.showerror("Error", "Por favor, complete todos los campos obligatorios (Nombre, Precio de Venta, Stock)")
+                return
+
+            try:
+                # Convertir los campos de precios y stock a números
+                precio_venta = float(precio_venta)
+                precio_compra = float(precio_compra) if precio_compra else None
+                stock = int(stock)
+
+                # Crear un nuevo objeto Producto y guardarlo en la base de datos
+                nuevo_producto = Producto(
+                    id=None,
+                    nombre=nombre,
+                    precio_venta=precio_venta,
+                    precio_compra=precio_compra,
+                    stock=stock,
+                    codigo_barras=codigo_barras,
+                    unidad_medida=unidad_medida
+                )
+                if nuevo_producto.save():
+                    messagebox.showinfo("Éxito", "Producto agregado exitosamente")
+                    self.show_main_menu()  # Volver al menú principal después de agregar el producto
+                else:
+                    messagebox.showerror("Error", "Hubo un problema al guardar el producto")
+
+            except ValueError:
+                messagebox.showerror("Error", "Por favor, ingrese valores válidos para Precio de Venta, Precio de Compra y Stock")
 
         tk.Button(self.frame, text="Agregar Producto", command=add_product).grid(row=6, column=1, padx=10, pady=10)
         tk.Button(self.frame, text="Volver", command=self.show_main_menu).grid(row=7, column=1, padx=10, pady=10)
