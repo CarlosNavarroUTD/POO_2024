@@ -1,15 +1,15 @@
 import os
 import hashlib
 from datetime import datetime
+from flask import flash
+
+def flash_errors(form):
+    """Función para mostrar errores de formularios Flask-WTF"""
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(f"Error en el campo {getattr(form, field).label.text}: {error}", 'error')
 
 
-def esperarTecla():
-  print("Oprima cualquier tecla para continuar ...")
-  input()
-  
-
-def borrarPantalla():
-    os.system('clear')
 
 def hash_password(password):
     """Encripta una contraseña utilizando SHA-256."""

@@ -1,45 +1,37 @@
-mi_proyecto/
-│
-├── pos_system/
-│   ├── Usuarios/
-│   │   ├── __init__.py  # Blueprint definition
-│   │   ├── usuario.py  #Clases
-│   │   └── views.py  # Specific views for Usuarios
-│   ├── Clientes/
-│   │   ├── __init__.py  # Blueprint definition
-│   │   ├── cliente.py  #Clases
-│   │   └── views.py  # Specific views for Clientes
-│   ├── Empleados/
-│   │   ├── __init__.py  # Blueprint definition
-│   │   ├── empleado.py #Clases
-│   │   └── views.py  # Specific views for Empleados
-│   ├── Tickets/
-│   │   ├── __init__.py  # Blueprint definition
-│   │   ├── ticket.py   #Clases
-│   │   ├── views.py  # Specific views for Tickets
-│   │   └── detalleticket.py  # Optionally here
-│   ├── Productos/
-│   │   ├── __init__.py  # Blueprint definition
-│   │   ├── producto.py #Clases
-│   │   ├── views.py  # Specific views for Productos
-│   │   └── detalleticket.py  # Optionally here
-│   ├── static/
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── img/
-│   ├── templates/
-│   │   ├── layouts/
-│   │   │   ├── base.html
-│   │   │   ├── header.html
-│   │   │   └── footer.html
-│   │   ├── clientes/
-│   │   ├── empleados/
-│   │   ├── productos/
-│   │   ├── tickets/
-│   │   └── usuarios/
-│   │       ├── login.html
-│   │       └── registro.html
-│   ├── config.py
-│   ├── conexion.py
-│   ├── requirements.txt
-│   └── run.py
+pos_system/
+   ├── Usuarios/
+   │   ├── __init__.py  # Blueprint definition
+   │   ├── usuario.py
+   │   └── views.py  # Specific views for Usuarios
+   ├── Clientes/
+   │   ├── __init__.py  # Blueprint definition
+   │   ├── cliente.py
+   │   └── views.py  # Specific views for Clientes
+   ├── Empleados/
+   │   ├── __init__.py  # Blueprint definition
+   │   ├── empleado.py
+   │   └── views.py  # Specific views for Empleados
+   ├── Tickets/
+   │   ├── __init__.py  # Blueprint definition
+   │   ├── ticket.py
+   │   ├── views.py  # Specific views for Tickets
+   │   └── detalleticket.py  # Optionally here
+   ├── Productos/
+   │   ├── __init__.py  # Blueprint definition
+   │   ├── producto.py
+   │   ├── views.py  # Specific views for Productos
+   │   └── detalleticket.py  # Optionally here
+   ├── static/
+   │   ├── css/
+   │   ├── js/
+   │   └── img/
+   ├── templates/
+   │   ├── clientes/
+   │   ├── empleados/
+   │   ├── productos/
+   │   ├── tickets/
+   │   └── usuarios/
+   ├── config.py
+   ├── conexion.py
+   ├── requirements.txt
+   └── run.py

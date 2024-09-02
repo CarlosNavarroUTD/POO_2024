@@ -1,4 +1,4 @@
-from conexion import create_connection, close_connection
+from ..conexion import get_db
 
 class Nota:
     def __init__(self, id=None, usuario_id=None, titulo=None, descripcion=None, fecha=None):
@@ -9,7 +9,7 @@ class Nota:
         self.fecha = fecha
 
     def create(self):
-        cursor, connection = create_connection()
+        cursor, db = get_db()
         try:
             query = """
                 INSERT INTO notas (usuario_id, titulo, descripcion)
@@ -17,29 +17,25 @@ class Nota:
             """
             values = (self.usuario_id, self.titulo, self.descripcion)
             cursor.execute(query, values)
-            connection.commit()
+            db.commit()
             print("Nota creada con éxito")
         except Exception as e:
-            print(f"Error al crear nota: {e}")
-        finally:
-            close_connection(connection, cursor)
+            print(f"Error al crear nota: {e}")  
 
     def read(self):
-        cursor, connection = create_connection()
+        cursor, _ = get_db()
         try:
             query = "SELECT * FROM notas WHERE id = %s"
             cursor.execute(query, (self.id,))
             result = cursor.fetchone()
             if result:
-                self.id, self.usuario_id, self.titulo, self.descripcion, self.fecha = result
+                self.id, self.usuario_id, self.titulo, self.descripcion, self.fecha = result.values()
             return result
         except Exception as e:
             print(f"Error al leer nota: {e}")
-        finally:
-            close_connection(connection, cursor)
 
     def update(self):
-        cursor, connection = create_connection()
+        cursor, db = get_db()
         try:
             query = """
                 UPDATE notas
@@ -48,46 +44,37 @@ class Nota:
             """
             values = (self.usuario_id, self.titulo, self.descripcion, self.id)
             cursor.execute(query, values)
-            connection.commit()
+            db.commit()
             print("Nota actualizada con éxito")
         except Exception as e:
             print(f"Error al actualizar nota: {e}")
-        finally:
-            close_connection(connection, cursor)
 
     def delete(self):
-        cursor, connection = create_connection()
+        cursor, db = get_db()
         try:
             query = "DELETE FROM notas WHERE id = %s"
             cursor.execute(query, (self.id,))
-            connection.commit()
+            db.commit()
             print("Nota eliminada con éxito")
         except Exception as e:
             print(f"Error al eliminar nota: {e}")
-        finally:
-            close_connection(connection, cursor)
 
     @staticmethod
     def get_all():
-        cursor, connection = create_connection()
+        cursor, _ = get_db()
         try:
             query = "SELECT * FROM notas"
             cursor.execute(query)
             return cursor.fetchall()
         except Exception as e:
             print(f"Error al obtener notas: {e}")
-        finally:
-            close_connection(connection, cursor)
-
 
     @staticmethod
     def get_by_usuario_id(usuario_id):
-        cursor, connection = create_connection()
+        cursor, _ = get_db()
         try:
             query = "SELECT * FROM notas WHERE usuario_id = %s"
             cursor.execute(query, (usuario_id,))
             return cursor.fetchall()
         except Exception as e:
             print(f"Error al obtener notas por usuario_id: {e}")
-        finally:
-            close_connection(connection, cursor)

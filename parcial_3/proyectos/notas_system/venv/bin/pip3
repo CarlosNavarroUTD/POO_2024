@@ -1,4 +1,4 @@
-#!/home/carlosn/proyectos/notas_system/venv/bin/python
+#!/home/carlosn/utd/POO_2024/parcial_3/proyectos/notas_system/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

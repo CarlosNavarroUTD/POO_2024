@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from usuarios.usuario import Usuario
+from app.usuarios.models import Usuario
 import hashlib
 
 def encriptar_contraseña(password):
